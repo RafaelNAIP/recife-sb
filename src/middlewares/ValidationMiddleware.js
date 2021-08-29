@@ -15,3 +15,5 @@ class ValidationMiddleware {
     }
   }
 }
+
+module.exports = ValidationMiddleware

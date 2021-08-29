@@ -37,7 +37,7 @@ class UserController {
   }
 
   async delete(req, res){
-    const id = req.body.id
+    const id = req.params.id
 
     const filter = User.findById(id)
     const deleteUser = await User.deleteOne(filter)
