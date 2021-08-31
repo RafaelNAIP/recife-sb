@@ -5,7 +5,8 @@ class JwtAuthProvider {
   #EXPIRES_IN = "1d"
 
   sign(user){
-    return jwt.sign(user._id, this.#SECRET, { expiresIn: this.#EXPIRES_IN })
+    console.log(user)
+    return jwt.sign({ id: user._id }, this.#SECRET, { expiresIn: this.#EXPIRES_IN })
   }
 
   verify(token){

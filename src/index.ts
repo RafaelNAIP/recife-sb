@@ -1,14 +1,13 @@
-const express = require("express")
-const mongoose = require("mongoose")
+import express from "express";
+import mongoose from "mongoose"
 mongoose.connect('mongodb://localhost:27017/recife-sb', {useNewUrlParser: true, useUnifiedTopology: true})
 
-const UserRouter = require("./routes/user")
-const bookRouter = require("./routes/books")
+import UserRouter from "./routes/user"
+import bookRouter from "./routes/books"
+import sessionRouter from "./routes/session";
 
 const app = express()
 app.use(express.json())
-
-
 
 
 app.listen(3000,() => {
@@ -18,5 +17,7 @@ app.listen(3000,() => {
 app.use(UserRouter)
 
 app.use(bookRouter)
+
+app.use(sessionRouter)
 
 

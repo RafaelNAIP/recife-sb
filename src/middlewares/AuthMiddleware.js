@@ -15,9 +15,9 @@ class AuthMiddleware {
 
       const [, token] = auth.split(" ")
 
-      const userId = this.authProvider.verify(token)
+      const user = this.authProvider.verify(token)
 
-      req.userId = userId
+      req.userId = user.id
 
       return next()
 
@@ -30,3 +30,5 @@ class AuthMiddleware {
   }
 
 }
+
+module.exports = AuthMiddleware
