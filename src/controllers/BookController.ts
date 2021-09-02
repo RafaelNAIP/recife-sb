@@ -1,20 +1,19 @@
-const Books = require("../models/books")
-
-const bookValidation = require("../validations/books")
+import { Request, Response } from "express"
+import Books from "../models/books"
 
 
 class BooksController {
-  async create(req, res) {
+  async create(req: Request, res: Response) {
     const { name, publisher, author, releaseDate, description, units } = req.body
 
-    const newBook = await Books({ name, publisher, author, releaseDate, description, units })
+    const newBook = new Books({ name, publisher, author, releaseDate, description, units })
     await newBook.save()
 
     return res.json(newBook)
 
 
   }
-  async addUnit(req, res) {
+  async addUnit(req: Request, res: Response) {
     const id = req.params.id
 
     const book = await Books.findById(id)
@@ -24,7 +23,7 @@ class BooksController {
 
     return res.json(book)
   }
-  async edit(req, res) {
+  async edit(req: Request, res: Response) {
     const { id, name, publisher, author, releaseDate, description, units } = req.body
 
     const editBook = await Books.findById(id)
@@ -40,17 +39,17 @@ class BooksController {
 
     res.json(editBook)
   }
-  async remove(req, res) {
+  async remove(req: Request, res: Response) {
     const { id } = req.params
 
     const book = await Books.findByIdAndRemove(id)
 
     res.json(book)
   }
-  async index(req, res) {
+  async index(req: Request, res: Response) {
     const allBooks = await Books.find()
     res.json(allBooks)
   }
 }
 
-module.exports = new BooksController()
+export default new BooksController()

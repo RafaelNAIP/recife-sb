@@ -1,7 +1,7 @@
-const { Router } = require("express")
-const UserController = require("../controllers/UserController")
-const createUsers = require("../validations/createUsers")
-const updateUsers = require("../validations/updateUsers")
+import { Router } from "express"
+import UserController from "../controllers/UserController"
+import createUsers from "../validations/createUsers"
+import updateUsers from "../validations/updateUsers"
 
 const UserRouter = Router()
 
@@ -13,4 +13,4 @@ UserRouter.get("/users", UserController.index)
 
 UserRouter.delete("/users/:id", UserController.delete)
 
-module.exports = UserRouter
+export default UserRouter

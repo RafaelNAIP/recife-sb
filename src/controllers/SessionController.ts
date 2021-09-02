@@ -1,11 +1,13 @@
-const User = require("../models/user")
+import { Request, Response } from "express"
+import User from "../models/user"
+import AuthProvider from "../providers/AuthProvider"
 
 class SessionController {
-  constructor(authProvider){
+  constructor(private authProvider: AuthProvider){
     this.authProvider = authProvider
   }
 
-  async authenticate(req, res){
+  async authenticate(req: Request, res: Response){
     const { email } = req.body
 
     const user = await User.findOne({
@@ -28,4 +30,4 @@ class SessionController {
 
 }
 
-module.exports = SessionController
+export default SessionController

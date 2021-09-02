@@ -1,5 +1,6 @@
-const yup = require("yup")
-const ValidationMiddleware = require("../middlewares/ValidationMiddleware")
+import * as yup from "yup"
+import ValidationMiddleware from "../middlewares/ValidationMiddleware"
+
 
 const createUsersSchema = yup.object().shape({
   name: yup.string().required(),
@@ -9,4 +10,4 @@ const createUsersSchema = yup.object().shape({
   userType: yup.string().required()
 })
 
-module.exports = new ValidationMiddleware(createUsersSchema)
+export default new ValidationMiddleware(createUsersSchema)

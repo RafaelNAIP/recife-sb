@@ -1,9 +1,13 @@
-class AuthMiddleware {
-  constructor(authProvider){
-    this.authProvider = authProvider
+import { NextFunction, Request, Response } from "express"
+import AuthProvider from "../providers/AuthProvider"
+import Middleware from "./Middleware"
+
+class AuthMiddleware implements Middleware {
+  constructor(private authProvider: AuthProvider ){
+    
   }
 
-  use(req, res, next){
+  async use(req: Request, res: Response, next: NextFunction){
     try{
       const auth = req.headers.authorization
 
@@ -17,7 +21,7 @@ class AuthMiddleware {
 
       const user = this.authProvider.verify(token)
 
-      req.userId = user.id
+      res.locals.userId = user._id
 
       return next()
 
@@ -31,4 +35,4 @@ class AuthMiddleware {
 
 }
 
-module.exports = AuthMiddleware
+export default AuthMiddleware

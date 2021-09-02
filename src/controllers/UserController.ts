@@ -1,11 +1,12 @@
-const User = require("../models/user")
+import { Request, Response } from "express"
+import User from "../models/user"
 
 class UserController {
-  async index(req,res){
+  async index(req: Request, res: Response){
     const all = await User.find()
     return res.json(all)
   }
-  async create(req,res){
+  async create(req: Request,res: Response){
     const request = req.body
     const name = request.name
     const cpf = request.cpf
@@ -19,7 +20,7 @@ class UserController {
   
     return res.json(newUser)
   }
-  async edit(req, res){
+  async edit(req: Request, res: Response){
     const request = req.body
     const id = request.id
   
@@ -36,7 +37,7 @@ class UserController {
     return res.json(editUser)  
   }
 
-  async delete(req, res){
+  async delete(req: Request, res: Response){
     const id = req.params.id
 
     const filter = User.findById(id)
@@ -49,4 +50,4 @@ class UserController {
 
 }
 
-module.exports = new UserController()
+export default new UserController()

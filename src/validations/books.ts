@@ -1,5 +1,5 @@
-const yup = require("yup")
-const ValidationMiddleware = require("../middlewares/ValidationMiddleware")
+import * as yup from "yup"
+import ValidationMiddleware from "../middlewares/ValidationMiddleware"
 
 const bookSchema = yup.object().shape({
   name: yup.string().required(),
@@ -10,4 +10,4 @@ const bookSchema = yup.object().shape({
   units: yup.number().required().positive().integer()
 })
 
-module.exports = new ValidationMiddleware(bookSchema)
+export default new ValidationMiddleware(bookSchema)

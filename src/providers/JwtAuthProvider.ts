@@ -1,17 +1,19 @@
+import User from "../entities/user"
+import AuthProvider from "./AuthProvider"
+
 const jwt = require("jsonwebtoken")
 
-class JwtAuthProvider {
+class JwtAuthProvider implements AuthProvider {
   #SECRET = "puts"
   #EXPIRES_IN = "1d"
 
-  sign(user){
-    console.log(user)
+  sign(user: User){
     return jwt.sign({ id: user._id }, this.#SECRET, { expiresIn: this.#EXPIRES_IN })
   }
 
-  verify(token){
+  verify(token: string){
     return jwt.verify(token, this.#SECRET)
   }
 }
 
-module.exports = JwtAuthProvider
+export default JwtAuthProvider

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+import * as mongoose from "mongoose"
 
 const Books = new mongoose.Schema({
   name: String,
@@ -9,4 +9,4 @@ const Books = new mongoose.Schema({
   units: Number,
 })
 
-module.exports = mongoose.model("books", Books)
+export default mongoose.model("books", Books)

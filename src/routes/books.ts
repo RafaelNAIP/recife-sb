@@ -1,10 +1,10 @@
-const { Router } = require("express")
-
-const booksValidation = require("../validations/books")
-const AuthMiddleware = require("../middlewares/AuthMiddleware")
-const BookController = require("../controllers/BookController")
-const updateBooks = require("../validations/updateBooks")
-const JwtAuthProvider = require("../providers/JwtAuthProvider")
+import { Router } from "express"
+ 
+import booksValidation from "../validations/books"
+import AuthMiddleware from "../middlewares/AuthMiddleware"
+import BookController from "../controllers/BookController"
+import updateBooks from "../validations/updateBooks"
+import JwtAuthProvider from "../providers/JwtAuthProvider"
 
 const bookRouter = Router()
 
@@ -18,4 +18,4 @@ bookRouter.delete("/books/:id", auth.use.bind(auth), BookController.remove)
 bookRouter.get("/books", BookController.index)
 
 
-module.exports = bookRouter
+export default bookRouter
